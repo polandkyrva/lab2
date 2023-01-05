@@ -13,41 +13,16 @@ class Game
         Random rand = new Random();
         Rating = rand.Next(10, 20);
 
-        if(Winner.UserStatus == 1) // Юзер
+        if (Winner.IsWinStreak(Loser) is true) // Якшо винстрик
         {
             Winner.WinGame(Rating, Loser.UserName);
         }
-        else if(Winner.UserStatus == 2) // Вип
-        {
-            if (Winner.IsWinStreak(Loser) is true) // Якшо винстрик
-            { 
-                Winner.WinGame(Rating*2, Loser.UserName); 
-            }
-            else
-            {
-                Winner.WinGame(Rating, Loser.UserName);
-            }
-        }
-        else if(Winner.UserStatus == 3) // Власник
-        {
-            if (Winner.IsWinStreak(Loser) is true) // Якшо винстрик
-            {
-                Winner.WinGame(Rating * 3, Loser.UserName);
-            }
-            else
-            {
-                Winner.WinGame(Rating, Loser.UserName);
-            }
-        }
-
-        if(Loser.UserStatus == 3) // Якшо власник то рейтинг віднімається в 2 рази менше
-        {
-            Loser.LoseGame(Rating/2, Winner.UserName);
-        }
         else
         {
-            Loser.LoseGame(Rating, Winner.UserName);
+            Winner.WinGame(Rating, Loser.UserName);
         }
+
+        Loser.LoseGame(Rating, Winner.UserName);
     }
 
     public void NoPrivilegeGameRating(GameAccount Winner, GameAccount Loser)

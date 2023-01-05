@@ -21,11 +21,11 @@ namespace lab2
         static void Main(String[] args)
         {
             int menu_choise; 
-            GameAccount FirstPlayer = new GameAccount();
+            var FirstPlayer = new GameAccount();
             Console.WriteLine($"Enter first player name:");
             FirstPlayer.UserName = Console.ReadLine();
 
-            GameAccount SecondPlayer = new GameAccount();
+            var SecondPlayer = new GameAccount();
             Console.WriteLine($"Enter second player name:");
             SecondPlayer.UserName = Console.ReadLine();
 
