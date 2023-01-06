@@ -15,7 +15,7 @@ class Game
 
         if (Winner.IsWinStreak(Loser) is true) // Якшо винстрик
         {
-            Winner.WinGame(Rating, Loser.UserName);
+            Winner.WinGame(Rating, Loser.UserName, true);
         }
         else
         {
@@ -25,12 +25,13 @@ class Game
         Loser.LoseGame(Rating, Winner.UserName);
     }
 
-    public void NoPrivilegeGameRating(GameAccount Winner, GameAccount Loser)
+    public void NoMultiplieGameRating(GameAccount Winner, GameAccount Loser)
     {
         Random rand = new Random();
         Rating = rand.Next(10, 20);
 
-        Winner.WinGame(Rating, Loser.UserName);
+        Winner.WinGame(Rating, Loser.UserName, false);
+        Loser.LoseGame(Rating, Winner.UserName);
     }
 
     // Rock Paper Scissors
@@ -48,18 +49,18 @@ class Game
             }
             else if (SecondPlayer.Choise == 2)
             {
-                Console.WriteLine("\nSecond player won!\n"); // Другий переміг
+                Console.WriteLine("\n" + SecondPlayer.UserName + " won!\n"); // Другий переміг
             }
             else
             {
-                Console.WriteLine("\nFirst player won!\n"); // Перший переміг
+                Console.WriteLine("\n" + FirstPlayer.UserName + " won!\n"); // Перший переміг
             }
         }
         else if (FirstPlayer.Choise == 2) // Paper
         {
             if (SecondPlayer.Choise == 1)
             {
-                Console.WriteLine("\nFirst player won!\n"); // Перший переміг
+                Console.WriteLine("\n" + FirstPlayer.UserName + " won!\n");  // Перший переміг
             }
             else if (SecondPlayer.Choise == 2)
             {
@@ -67,18 +68,18 @@ class Game
             }
             else
             {
-                Console.WriteLine("\nSecond player won!\n"); // Другий переміг
+                Console.WriteLine("\n" + SecondPlayer.UserName + " won!\n"); // Другий переміг
             }
         }
         else // Scissors
         {
             if (SecondPlayer.Choise == 1)
             {
-                Console.WriteLine("\nSecond player won!\n"); // Другий переміг
+                Console.WriteLine("\n" + SecondPlayer.UserName + " won!\n"); ; // Другий переміг
             }
             else if (SecondPlayer.Choise == 2)
             {
-                Console.WriteLine("\nFirst player won!\n"); // Перший переміг
+                Console.WriteLine("\n" + FirstPlayer.UserName + " won!\n"); // Перший переміг
             }
             else
             {
@@ -139,7 +140,7 @@ class Game
         }
     }
 
-    public void NoPrivilegeGame(GameAccount FirstPlayer, GameAccount SecondPlayer)
+    public void NoMultiplieGame(GameAccount FirstPlayer, GameAccount SecondPlayer)
     {
         FirstPlayer.GetPlayerChoise();
         SecondPlayer.GetPlayerChoise();
@@ -152,18 +153,18 @@ class Game
             }
             else if (SecondPlayer.Choise == 2)
             {
-                NoPrivilegeGameRating(SecondPlayer, FirstPlayer); // Другий переміг
+                NoMultiplieGameRating(SecondPlayer, FirstPlayer); // Другий переміг
             }
             else
             {
-                NoPrivilegeGameRating(FirstPlayer, SecondPlayer); // Перший переміг
+                NoMultiplieGameRating(FirstPlayer, SecondPlayer); // Перший переміг
             }
         }
         else if (FirstPlayer.Choise == 2) // Paper
         {
             if (SecondPlayer.Choise == 1)
             {
-                NoPrivilegeGameRating(FirstPlayer, SecondPlayer); // Перший переміг
+                NoMultiplieGameRating(FirstPlayer, SecondPlayer); // Перший переміг
             }
             else if (SecondPlayer.Choise == 2)
             {
@@ -171,18 +172,18 @@ class Game
             }
             else
             {
-                NoPrivilegeGameRating(SecondPlayer, FirstPlayer); // Другий переміг
+                NoMultiplieGameRating(SecondPlayer, FirstPlayer); // Другий переміг
             }
         }
         else // Scissors
         {
             if (SecondPlayer.Choise == 1)
             {
-                NoPrivilegeGameRating(SecondPlayer, FirstPlayer); // Другий переміг
+                NoMultiplieGameRating(SecondPlayer, FirstPlayer); // Другий переміг
             }
             else if (SecondPlayer.Choise == 2)
             {
-                NoPrivilegeGameRating(FirstPlayer, SecondPlayer); // Перший переміг
+                NoMultiplieGameRating(FirstPlayer, SecondPlayer); // Перший переміг
             }
             else
             {

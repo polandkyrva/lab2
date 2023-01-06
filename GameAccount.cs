@@ -9,16 +9,22 @@ class GameAccount
     public int CurrentRating = 0;
     public int GamesCount = 0;
     public int Choise;
-    public int UserStatus = 0;
+    public string UserStatus;
     public List<string> History = new List<string>();
 
     private int _WinStreakCounter = 1;
     private string _WinStreakUserName;
 
 
+    public GameAccount()
+    {
+        UserStatus = "User";
+    }
+
        
     public void GetStats()
     {
+        Console.WriteLine("\n" + UserName + " history:\n");
         for (int i = 0; i < History.Count; i++)
         {
             Console.WriteLine(History[i]);
@@ -48,11 +54,19 @@ class GameAccount
         return false;
     }
 
-    public void WinGame(int rating, string opponentName)
+    public virtual void WinGame(int rating, string opponentName)
     {
         GamesCount++;
         Console.WriteLine("\n" + UserName + " won!\n");
-        History.Add(GamesCount + "\tWinner - " + UserName + "\tLoser - " + opponentName + "\tRating - [+" + rating + "]");
+        History.Add(GamesCount + "\tWinner[" + UserStatus + "] - " + UserName + "\tLoser - " + opponentName + "\tRating - [+" + rating + "]");
+        CurrentRating += rating;
+        Console.WriteLine(UserName + " rating: " + CurrentRating + "\n");
+    }
+    public virtual void WinGame(int rating, string opponentName, Boolean IsWinstreak)
+    {
+        GamesCount++;
+        Console.WriteLine("\n" + UserName + " won!\n");
+        History.Add(GamesCount + "\tWinner[" + UserStatus + "] - " + UserName + "\tLoser - " + opponentName + "\tRating - [+" + rating + "]");
         CurrentRating += rating;
         Console.WriteLine(UserName + " rating: " + CurrentRating + "\n");
     }
